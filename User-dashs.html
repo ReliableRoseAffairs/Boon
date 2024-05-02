@@ -1,0 +1,320 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+<style>
+body {
+  margin: 0;
+  font-family: 'Roboto' , sans-serif;
+  background: #f2f2f2;
+}
+h1 {
+  text-align: center;
+}
+.topnav {
+  overflow: hidden;
+  background-color: #1666c4;
+}
+
+.topnav a {
+  float: left;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.topnav a:hover {
+  background-color: #fff;
+  color: black;
+}
+
+.topnav a.active {
+  background-color: #e6e6fa;
+  color: #111;
+}
+
+.topnav .icon {
+  display: none;
+}
+
+@media screen and (max-width: 600px) {
+  .topnav a:not(:first-child) {display: none;}
+  .topnav a.icon {
+    float: right;
+    display: block;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .topnav.responsive {position: relative;}
+  .topnav.responsive .icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  .topnav.responsive a {
+    float: none;
+    display: block;
+    text-align: left;
+  }
+}
+.panel {
+      background-color: #fff;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      margin: 10px;
+      padding: 10px;
+      margin-left: 30px;
+      text-align: center;
+      width: 280px;
+    }
+
+    .panel-heading {
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+  .panel-icon {
+      color: #007bff; /* Change the color of the icon as needed */
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+    .panel-amount {
+      font-size: 24px;
+      font-weight: bold;
+    }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+    th, td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: left;
+    }
+    th {
+      background-color: #f2f2f2;
+    }
+    /* Your existing CSS styles */
+
+/* Additional styles for transaction history table */
+#transaction-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+#transaction-table th, #transaction-table td {
+    border: 1px solid #dddddd;
+    padding: 8px;
+}
+
+#transaction-table th {
+    background-color: #f2f2f2;
+}
+
+/* Styles for 'Approved' status */
+.approved {
+    color: green;
+}
+</style>
+</head>
+<body>
+
+<div class="topnav" id="myTopnav">
+  <a href="#home" class="active">Dashboard</a>
+ <a href="depositaye.html">Deposit</a>
+  <a href="#">Withdraw</a>
+  <a href="investment-plans.html">plans</a>
+  <a href="trans.html">Transaction History</a>
+  <a href="contact-boon.html">Contact us</a>
+  <a href="#">Setting</a>
+  <a href="accountme.html">Account</a>
+  <a href="#logout" id="logout-btn">logout</a>
+   <div style="padding-left:120px">
+</div>
+  <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+    <i class="fa fa-bars"></i>
+  </a>
+</div>
+
+<div style="padding-left:120px">
+  <h2> Dashboard</h2>
+
+</div>
+<div class="panel">
+  <i class="fas fa-chart-pie panel-icon"></i>
+  <h2 class="panel-heading">Total Portfolio</h2>
+  <p class="panel-amount" id="balance-display"></p>
+</div>
+
+<div class="panel">
+  <i class="fas fa-arrow-alt-circle-down panel-icon"></i>
+  <h2 class="panel-heading">Total Withdrawal</h2>
+  <p class="panel-amount" id="total-withdrawal-amount">$0.00</p>
+</div>
+
+<div class="panel">
+  <i class="fas fa-dollar-sign panel-icon"></i>
+  <h2 class="panel-heading">Total Earnings</h2>
+  <p class="panel-amount" id="total-earnings-amount">$0.00</p>
+</div>
+<div class="panel">
+  <i class="fas fa-chart-line panel-icon"></i>
+  <h2 class="panel-heading">Growth</h2>
+  <p class="panel-amount" id="growth-amount">0%</p>
+</div>
+<div class="panel">
+  
+  <i class="fas fa-user-cog panel-icon"></i>
+    <p id="user-email">User Email</p>
+  </form>
+</div>
+ <h1>Transaction History</h1>
+  <table id="transaction-table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Amount</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody id="transaction-list">
+      <!-- Transaction rows will be dynamically added here -->
+    </tbody>
+  </table>
+  
+
+<script>
+function myFunction() {
+  var x = document.getElementById("myTopnav");
+  if (x.className === "topnav") {
+    x.className += " responsive";
+  } else {
+    x.className = "topnav";
+  }
+}
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
+ <script src="https://www.gstatic.com/firebasejs/8.2.10/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.10/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.10/firebase-firestore.js"></script>
+    <script>
+        // Initialize Firebase
+       var firebaseConfig = {
+  apiKey: "AIzaSyAtVvPjdsj84mWqaG4-7SyjbljCnslZ1SM",
+  authDomain: "hendaa-1.firebaseapp.com",
+  databaseURL: "https://hendaa-1-default-rtdb.firebaseio.com",
+  projectId: "hendaa-1",
+  storageBucket: "hendaa-1.appspot.com",
+  messagingSenderId: "831134776479",
+  appId: "1:831134776479:web:56cd7098fc69cd70a376aa"
+};
+        firebase.initializeApp(firebaseConfig);
+        
+        // Initialize Firebase services
+        const auth = firebase.auth();
+        const db = firebase.firestore();
+        db.settings({ timestampsInSnapshots: true });
+
+        // Function to display user balance
+        function displayBalance() {
+            // Check if the user is authenticated
+            auth.onAuthStateChanged(user => {
+                if (user) {
+                    // User is signed in
+                    const userId = user.uid;
+                    const userRef = db.collection('users').doc(userId);
+
+                    // Retrieve user balance from Firestore
+                    userRef.get().then((doc) => {
+                        if (doc.exists) {
+                            const balance = doc.data().balance;
+                            document.getElementById('balance-display').innerText = `$ ${balance}`;
+                        } else {
+                            console.log("No such document!");
+                        }
+                    }).catch((error) => {
+                        console.error("Error getting user document:", error);
+                    });
+                } else {
+                    // User is not signed in
+                    console.log("User is not signed in.");
+                }
+            });
+        }
+
+        // Function to handle user logout
+        function logout() {
+            auth.signOut().then(() => {
+                console.log("User signed out");
+                // Redirect the user to the login page after sign-out
+                window.location.href = "freshcreate.html";
+            }).catch((error) => {
+                console.error("Error signing out:", error);
+            });
+        }
+        
+
+
+        // Function to display user email
+function displayUserEmail() {
+    // Check if the user is authenticated
+    auth.onAuthStateChanged(user => {
+        if (user) {
+            // User is signed in
+            const userEmail = user.email;
+            document.getElementById('user-email').innerText = userEmail;
+        } else {
+            // User is not signed in
+            console.log("User is not signed in.");
+        }
+    });
+}
+
+// Call the function to display user email
+
+function displayTransactionHistory() {
+    firebase.auth().onAuthStateChanged(function(user) {
+        if (user) {
+            db.collection("transactions").where("userId", "==", user.uid).get().then((querySnapshot) => {
+                const transactionTable = document.getElementById("transaction-table");
+                const transactionList = document.getElementById("transaction-list");
+                transactionList.innerHTML = ""; // Clear previous data
+
+                querySnapshot.forEach((doc) => {
+                    const transaction = doc.data();
+                    const row = document.createElement("tr");
+                    row.innerHTML = `
+                        <td>${transaction.type}</td>
+                        <td>$${transaction.amount}</td>
+                        <td class="${transaction.status === 'Approved' ? 'approved' : ''}">${transaction.status}</td>
+                    `;
+                    transactionList.appendChild(row);
+                });
+            }).catch((error) => {
+                console.log("Error getting documents: ", error);
+            });
+        } else {
+            // Redirect to login page if no user is signed in
+            window.location.href = "freshcreate.html";
+        }
+    });
+}
+
+// Call the function to display user balance and transaction history
+displayBalance();
+displayTransactionHistory();
+displayUserEmail();
+// Add event listener to the logout button
+        document.getElementById('logout-btn').addEventListener('click', logout);
+    </script>
+
+</body>
+</html>

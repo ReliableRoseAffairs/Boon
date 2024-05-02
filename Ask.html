@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <style>
+        /* Your CSS styles */
+    </style>
+</head>
+<body>
+    <h1>User Profile</h1>
+
+    <div id="user_info">
+        <h2>Welcome, <span id="user_name">Loading...</span></h2>
+        <p>Email: <span id="user_email">Loading...</span></p>
+    </div>
+
+    <button onclick="logout()">Logout</button>
+
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
+    <script>
+                const firebaseConfig = {
+  apiKey: "AIzaSyAtVvPjdsj84mWqaG4-7SyjbljCnslZ1SM",
+  authDomain: "hendaa-1.firebaseapp.com",
+  databaseURL: "https://hendaa-1-default-rtdb.firebaseio.com",
+  projectId: "hendaa-1",
+  storageBucket: "hendaa-1.appspot.com",
+  messagingSenderId: "831134776479",
+  appId: "1:831134776479:web:56cd7098fc69cd70a376aa"
+};
+            // Your Firebase config
+      
+
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+
+        // Function to display user information
+        function displayUserInfo() {
+            const user = firebase.auth().currentUser;
+
+            if (user) {
+                const userNameElement = document.getElementById("user_name");
+                const userEmailElement = document.getElementById("user_email");
+
+                userNameElement.textContent = user.displayName || "Unknown"; // Display user name or "Unknown" if not available
+                userEmailElement.textContent = user.email;
+            } else {
+                console.log("No user logged in!");
+                // Redirect to login page if no user is signed in
+                window.location.href = "freshcreate.html";
+            }
+        }
+
+        // Function to logout user
+        function logout() {
+            firebase.auth().signOut().then(() => {
+                // Sign-out successful.
+                window.location.href = "freshcreate.html"; // Redirect to login page
+            }).catch((error) => {
+                // An error happened.
+                console.log("Error logging out:", error);
+            });
+        }
+
+        // Call the function to display user information when the page loads
+        window.onload = function() {
+            displayUserInfo();
+        };
+    </script>
+</body>
+</html>

@@ -1,0 +1,279 @@
+ * {
+   box-sizing: border-box;
+ }
+  body {
+    box-sizing: border-box;
+    font-family: Sans-Serif,Times New Roman ,Trebuchet MS;
+  }
+  .header {
+    background-color: #fff;
+    color: #00045a;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  /* Profile logo styles */
+  .profile-logo {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px; /* Adjust margin as needed */
+  }
+
+  /* Account owner's name styles */
+  .account-name {
+    font-size: 16px;
+    font-weight: bold;
+  
+  }
+  
+  /* Logout button styles */
+  .logout-btn {
+    background-color: #f1f1f1;
+    color: #00045a;
+    font-weight: Bold;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  .container {
+    margin: 0; /* Remove default margin */
+    padding: 0; /* Remove default padding */
+    line-height: 1; /* Set line-height to normal */
+  }
+  .small-heading {
+    font-size: 16px; /* Adjust font size as needed */
+    color: #333;
+    margin: 5px;
+    margin-left: 20px;
+    margin-top: 20px;
+    font-family: Times New Roman;
+  
+  }
+
+  /* Bold heading style */
+  .bold-heading {
+    font-weight: bolder;
+    color: #111111;
+    margin: 10px;
+    margin-left: 20px;
+    
+  }
+
+  /* Paragraph style */
+  p {
+    color: #222222;
+    font-size: 10px;
+    margin: 10px;
+    margin-left: 20px;
+  }
+   .buttonn-container {
+    display: flex;
+    flex-direction: row;
+    gap: 20px; /* Adjust the gap between buttons */
+  }
+
+  /* Button style */
+  .button1 {
+    padding: 9px 14px;
+    border: none;
+    border-radius: 5px;
+    margin-top: 0;
+    font-weight: Bold;
+    background-color: #fff;
+    color: #00045a;
+    box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.1); /* Adjust the shadow as needed */
+    cursor: pointer;
+    transition: background-color 0.3s, box-shadow 0.3s;
+  }
+
+  /* Button hover effect */
+  .button:hover {
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Adjust the shadow on hover */
+  }
+  
+   .buttoon-container {
+    display: flex;
+    flex-direction: row;
+    gap: 10px; /* Adjust the gap between buttons */
+    margin-left: 0;
+  }
+
+  /* Button style */
+  .buttoon {
+    padding: 10px 60px;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    margin-top: 20px;
+    background-color: #fff;
+    color: #00045a;
+    box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.1); /* Adjust the shadow as needed */
+    cursor: pointer;
+    transition: background-color 0.3s, box-shadow 0.3s;
+  }
+
+  /* Button hover effect */
+  .buttoon:hover {
+    background-color: #e0e0e0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Adjust the shadow on hover */
+  }
+  .alert {
+    padding: 20px;
+    background-color: #648de5 ; /* Red color for error alert, change as needed */
+    color: black;
+    margin-top: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    text-align: center;
+    margin-bottom: 15px; /* Adjust margin as needed */
+  }
+
+  /* Close button style */
+  .close-btn {
+    float: right;
+    cursor: pointer;
+    font-size: 20px;
+  }
+
+  /* Close button hover effect */
+  .close-btn:hover {
+    color: #fff;
+  }
+  .containerr {
+    display: flex;
+    align-items: center;
+  }
+
+  /* Quick access text style */
+  .quick-access {
+    margin-right: auto; /* Pushes the edit link to the right */
+    font-weight: 10px;
+    color: #333;
+  }
+
+  /* Edit link style */
+  .edit-link {
+    color: #00045a;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+  .button-container {
+    display: flex;
+    gap: 2px;
+    justify-content: space-around;
+    margin-bottom: 20px; /* Adjust margin as needed */
+  }
+
+  /* Button style */
+  .button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    background-color: #fff; /* Blue color for buttons, change as needed */
+    color: #00045a;
+    box-shadow: 0px 2px 5px 2px rgba(0, 0, 0, 0.1); 
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+
+  /* Button icon style */
+  .button i {
+    margin-right: 5px; /* Adjust margin as needed */
+  }
+
+  /* Button hover effect */
+  .button:hover {
+    background-color: #0056b3; /* Darker shade of blue on hover */
+  } .containeer {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+
+  /* Transaction item style */
+  .transaction-item {
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #ccc;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  /* Paragraph style */
+  p {
+    margin: 0;
+    font-size: 14px;
+    color: #666;
+  }
+
+  /* Link style */
+  .link {
+    text-decoration: none;
+    color: #007bff; /* Blue color for links, change as needed */
+    font-size: 14px;
+    font-weight: bold;
+  }
+
+  /* Transaction details style */
+  .transaction-details {
+    display: flex;
+    align-items: center;
+  }
+
+  /* Transaction currency icon style */
+  .currency-icon {
+    margin-right: 10px; /* Adjust margin as needed */
+    color: #007bff; /* Blue color for currency icons, change as needed */
+  }
+
+  /* Transaction asset heading style */
+  .transaction-asset {
+    margin-right: auto; /* Pushes the amount to the right */
+    font-weight: bold;
+    color: #333;
+  }
+
+  /* Amount style */
+  .amount {
+    font-weight: bold;
+    color: #333;
+  }
+  .bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #fff; /* Light gray background color */
+    display: flex;
+    justify-content: space-around;
+    padding: 5px 0;
+    box-shadow: 0px -2px 5px rgba(0, 0, 0, 0.1); /* Shadow effect */
+    z-index: 1000; /* Ensure the navigation is on top of other content */
+  }
+
+  /* Bottom navigation item style */
+  .nav-item {
+    text-align: center;
+    flex-grow: 1;
+    padding: 5px 0;
+    color: #00045a; /* Default color for icons */
+    text-decoration: none;
+  }
+
+  /* Bottom navigation item icon style */
+  .nav-item i {
+    font-size: 24px; /* Adjust icon size as needed */
+  }
+
+  /* Active item style */
+  .active {
+    color: #007bff; /* Blue color for active item */
+  }

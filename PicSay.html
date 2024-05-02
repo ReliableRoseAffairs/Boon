@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Upload Profile Picture</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+  }
+  .container {
+    max-width: 500px;
+    margin: 0 auto;
+  }
+  #upload-form {
+    margin-bottom: 20px;
+  }
+  #profile-picture {
+    margin-bottom: 10px;
+  }
+  #submit-btn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  #submit-btn:hover {
+    background-color: #45a049;
+  }
+  #uploaded-image {
+    margin-top: 20px;
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <h2>Upload Profile Picture</h2>
+  <p id="user-email"></p> <!-- Display user email here -->
+  <input type="file" id="profile-picture" accept="image/*">
+  <button id="submit-btn">Upload</button>
+  <progress value="0" max="100" id="uploader">0%</progress>
+  <div id="uploaded-image"></div> <!-- Container for displaying uploaded picture -->
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/8.2.10/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.2.10/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.2.10/firebase-storage.js"></script>
+<script>
+  // Firebase configuration
+     var firebaseConfig = {
+  apiKey: "AIzaSyAtVvPjdsj84mWqaG4-7SyjbljCnslZ1SM",
+  authDomain: "hendaa-1.firebaseapp.com",
+  databaseURL: "https://hendaa-1-default-rtdb.firebaseio.com",
+  projectId: "hendaa-1",
+  storageBucket: "hendaa-1.appspot.com",
+  messagingSenderId: "831134776479",
+  appId: "1:831134776479:web:56cd7098fc69cd70a376aa"
+};
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+
+  // Get elements
+  var uploader = document.getElementById('uploader');
+  var fileButton = document.getElementById('profile-picture');
+  var userEmail = document.getElementById('user-email'); // Reference to user email paragraph
+  var uploadedImage = document.getElementById('uploaded-image'); // Reference to uploaded image container
+
+  // Listen for file selection
+  fileButton.addEventListener('change', function(e) {
+    // Get file
+    var file = e.target.files[0];
+
+    // Clear previous images
+    uploadedImage.innerHTML = '';
+
+    // Display uploaded picture
+    displayImage(file);
+
+  });
+
+  // Function to display user's email
+  function displayUserEmail(user) {
+    if (user) {
+      // User is signed in
+      userEmail.textContent = 'Email: ' + user.email;
+    } else {
+      // No user is signed in
+      userEmail.textContent = 'No user signed in.';
+    }
+  }
+
+  // Function to display image
+  function displayImage(file) {
+    // Check if file is an image
+    if (!file.type.startsWith('image/')) {
+      console.error('Selected file is not an image.');
+      return;
+    }
+
+    // Create URL for the selected image
+    var imageUrl = URL.createObjectURL(file);
+
+    // Create image element
+    var img = document.createElement('img');
+    img.src = imageUrl;
+    img.alt = 'Uploaded Profile Picture';
+
+    // Append image to container
+    uploadedImage.appendChild(img);
+  }
+
+  // Listen for authentication state changes
+  firebase.auth().onAuthStateChanged(function(user) {
+    displayUserEmail(user);
+  });
+
+  // Function to upload image to Firebase Storage
+  document.getElementById('submit-btn').addEventListener('click', function() {
+    var file = fileButton.files[0];
+
+    // Create a storage reference
+    var storageRef = firebase.storage().ref('profilePictures/' + file.name);
+
+    // Upload file
+    var task = storageRef.put(file);
+
+    // Update progress bar
+    task.on('state_changed',
+      function progress(snapshot) {
+        var percentage = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+        uploader.value = percentage;
+      },
+      function error(err) {
+        console.error('Error uploading file: ', err);
+      },
+      function complete() {
+        console.log('File uploaded successfully');
+        // Optional: Get the download URL and display the image
+        storageRef.getDownloadURL().then(function(url) {
+          console.log('File available at: ', url);
+          // Display uploaded picture
+          displayImageFromUrl(url);
+          alert('Picture added successfully');
+        });
+      }
+    );
+  });
+
+  // Function to display image from URL
+  function displayImageFromUrl(url) {
+    // Clear previous images
+    uploadedImage.innerHTML = '';
+
+    // Create image element
+    var img = document.createElement('img');
+    img.src = url;
+    img.alt = 'Uploaded Profile Picture';
+
+    // Append image to container
+    uploadedImage.appendChild(img);
+  }
+</script>
+
+</body>
+</html>

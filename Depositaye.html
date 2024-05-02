@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Deposit</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 400px;
+            margin: 50px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h2 {
+            margin-top: 0;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        input[type="number"], select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Deposit</h2>
+        <form id="depositForm">
+            <label for="amount">Amount:</label>
+            <input type="number" id="amount" name="amount" required>
+            <label for="investmentPlan">Investment Plan:</label>
+            <select id="investmentPlan" name="investmentPlan">
+                <option value="plan1">Plan 1</option>
+                <option value="plan2">Plan 2</option>
+                <option value="plan3">Plan 3</option>
+            </select>
+            <label for="paymentMethod">Payment Method:</label>
+            <select id="paymentMethod" name="paymentMethod">
+                <option value="paypal">PayPal</option>
+                <option value="creditCard">Credit Card</option>
+                <option value="bankTransfer">Bank Transfer</option>
+            </select>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-firestore.js"></script>
+    <script>
+    const firebaseConfig = {
+  apiKey: "AIzaSyAtVvPjdsj84mWqaG4-7SyjbljCnslZ1SM",
+  authDomain: "hendaa-1.firebaseapp.com",
+  databaseURL: "https://hendaa-1-default-rtdb.firebaseio.com",
+  projectId: "hendaa-1",
+  storageBucket: "hendaa-1.appspot.com",
+  messagingSenderId: "831134776479",
+  appId: "1:831134776479:web:56cd7098fc69cd70a376aa"
+};
+firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
+
+        // Function to handle deposit submission
+        document.getElementById("depositForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            const amount = parseFloat(document.getElementById("amount").value);
+            const investmentPlan = document.getElementById("investmentPlan").value;
+            const paymentMethod = document.getElementById("paymentMethod").value;
+            if (!isNaN(amount) && amount > 0) {
+                // Add deposit to transactions collection with status: "Pending"
+                db.collection("transactions").add({
+                    type: "Deposit",
+                    amount: amount,
+                    investmentPlan: investmentPlan,
+                    paymentMethod: paymentMethod,
+                    status: "Pending",
+                    userId: firebase.auth().currentUser.uid,
+                    timestamp: firebase.firestore.FieldValue.serverTimestamp()
+                })
+                .then(() => {
+                    alert("Deposit request submitted successfully!");
+                    window.location.href = "user-dashs.html"; // Redirect to dashboard
+                })
+                .catch((error) => {
+                    console.error("Error adding deposit: ", error);
+                });
+            } else {
+                alert("Please enter a valid amount.");
+            }
+        });
+  
+        // Firebase initialization and form submission handling script...
+    </script>
+</body>
+</html>

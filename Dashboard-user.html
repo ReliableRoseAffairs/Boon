@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Header with Profile Logo and Logout Button</title>
+<link rel="stylesheet" href="dashs.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+     
+       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<style>
+.modal {
+  display: none;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 0;
+  background-color: #001f3f;
+  overflow: hidden;
+  transition: height 0.5s;
+}
+
+.modal-content {
+  background-color: #f1f1f1;
+  margin: auto;
+  padding: 20px;
+  width: 60%;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.modal-buttons {
+  text-align: center;
+}
+
+.modal-button {
+  padding: 10px 20px;
+  background-color: #00045a;
+  color: white;
+  margin: 10px;
+  cursor: pointer;
+  border-radius: 8px;
+  border: 2px solid #fff;
+}
+
+.icon {
+  margin-right: 5px;
+}
+
+.close-icon {
+  position: absolute;
+  
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+}
+
+/* Adjustments */
+.modal-button:first-child {
+  width: 195px; /* Make the width auto to match the second button */
+  padding: 17px; /* Adjust padding to match the second button */
+  display: inline-block; /* Prevent line break */
+  margin-right: 20px; /* Add margin-right for spacing */
+}
+.transaction-item {
+    background-color: #f7f7f7;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.transaction-type {
+    font-weight: bold;
+}
+
+.transaction-amount {
+    color: #4caf50; /* Green color for positive amounts */
+}
+
+.transaction-status {
+    font-weight: bold;
+}
+
+/* Colors for different status */
+.transaction-approved {
+    color: #1666c4; /* Blue color for approved */
+}
+
+.transaction-declined {
+    color: #f44336; /* Red color for declined */
+}
+</style>
+     </style>
+</head>
+<body>
+
+<header class="header">
+  <!-- Profile logo and account owner's name on the left -->
+  <div>
+    <img class="profile-logo" src="image.jpg" alt="Profile Logo">
+    <span class="account-name">Hi </span>
+  </div>
+  
+  <!-- Logout button on the right -->
+  <button class="logout-btn" id="logout" onclick="logout()">Logout</button>
+</header>
+<div class="buttonn-container">
+  <!-- Button 1: Deposit -->
+  <button class="button1" id="transfer" onclick="window.location.href='deposit.html'"><i class="fas fa-money-check-alt"></i>Transfer</button>
+  
+  <!-- Button 2: Withdraw -->
+  <button class="button1" id="invest" onclick="window.location.href='withdraw.html'"><i class="fas fa-hand-holding-usd"></i>Invest</button>
+  
+  <!-- Button 3: Invest -->
+  <button class="button1" id="buy" onclick="window.location.href='investment-plan.html'"><i class="fas fa-chart-line"></i>Buy</button>
+    <button class="button1" id="invest" onclick="window.location.href='withdraw.html'"><i class="fas fa-hand-holding-usd"></i>Spend</button>
+
+</div>
+<div class="container">
+
+<h3> Portfolio <span id="balance">Loading...</span></h3>
+
+<!-- Second Heading: Bold -->
+
+  
+
+<!-- Paragraph -->
+<p>Last Transaction Date: February 15, 2024</p>
+</div>
+<div class="buttoon-container">
+  <!-- Button 1 -->
+  
+  
+<button class="buttoon" onclick="openModal()">Deposit</button>
+ 
+
+<div id="myModal" class="modal">
+  <div class="modal-content">
+    <span class="close-icon" onclick="closeModal()"><i class="fas fa-times"></i></span>
+    <h2>Deposit</h2>
+    <div class="modal-buttons">
+      <button class="modal-button"><i class="fas fa-university"></i> From Bank/Cash</button>
+      <button class="modal-button"><i class="fas fa-wallet"></i> From Another Wallet/Exchange</button>
+    </div>
+  </div>
+</div>
+  
+  <!-- Button 3 -->
+  <button class="buttoon" onclick="window.location.href='demi.html'">Deposit</button>
+  
+</div>
+<div class="alert">
+  <span class="close-btn" onclick="this.parentElement.style.display='none'">&times;</span>
+  Time to Invest and Build Wealth<br>With <strong>BoonGrow</strong></div>
+  
+  <div class="containerr">
+  <!-- Quick access text on the left -->
+  <span class="quick-access">Quick Access </span>
+  
+  <!-- Edit link on the right -->
+  <a href="account.html" class="edit-link">Edit</a>
+</div>
+<div class="button-container">
+  <!-- Edit Account button -->
+  <button class="button" onclick="window.location.href='account.html'"><i class="fas fa-user-edit"></i>Edit Account</button>
+  
+  <!-- Support button -->
+  <button class="button" onclick="window.location.href='security-center.html'"><i class="fas fa-question-circle"></i>Support</button>
+  
+  <!-- Referral button -->
+  <button class="button" onclick="window.location.href='index.html'"><i class="fas fa-share-alt"></i>Referral</button>
+</div>
+<div class="containeer">
+  <!-- Transaction 1 -->
+  <p>transaction history</p>
+  <div class="transaction-item">
+    
+
+    
+    </div>
+     <ul id="transactionHistory"></ul>
+     
+     
+     
+    
+  <!-- View all link -->
+  <a href="#" class="link">View All</a>
+</div>
+<div class="bottom-nav">
+  <!-- Home -->
+  <a href="index.html" class="nav-item active">
+    <i class="fas fa-home"></i><br>
+    Home
+  </a>
+
+  <!-- Pay -->
+  <a href="Deposit-user.html" class="nav-item">
+    <i class="fas fa-credit-card"></i><br>
+    Pay
+  </a>
+
+  <!-- More -->
+  <a href="#" class="nav-item">
+    <i class="fas fa-bars"></i><br>
+    More
+  </a>
+</div>
+<script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-firestore.js"></script>
+   <script>
+     const firebaseConfig = {
+  apiKey: "AIzaSyAtVvPjdsj84mWqaG4-7SyjbljCnslZ1SM",
+  authDomain: "hendaa-1.firebaseapp.com",
+  databaseURL: "https://hendaa-1-default-rtdb.firebaseio.com",
+  projectId: "hendaa-1",
+  storageBucket: "hendaa-1.appspot.com",
+  messagingSenderId: "831134776479",
+  appId: "1:831134776479:web:56cd7098fc69cd70a376aa"
+};
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
+
+        // Function to display user balance
+        function displayBalance() {
+            firebase.auth().onAuthStateChanged(function(user) {
+                if (user) {
+                    // Check if balance is cached
+                    const cachedBalance = localStorage.getItem('cachedBalance');
+                    if (cachedBalance !== null) {
+                        document.getElementById("balance").textContent = "$" + cachedBalance;
+                    } else {
+                        db.collection("users").doc(user.uid).get().then((doc) => {
+                            if (doc.exists) {
+                                const balance = doc.data().balance;
+                                document.getElementById("balance").textContent = "Balance: " + balance;
+                                // Cache the balance
+                                localStorage.setItem('cachedBalance', balance);
+                            } else {
+                                console.log("No such document!");
+                            }
+                        }).catch((error) => {
+                            console.log("Error getting document:", error);
+                        });
+                    }
+                } else {
+                    // Redirect to login page if no user is signed in
+                    window.location.href = "boon-signin.html";
+                }
+            });
+        }
+
+        // Function to display transaction history
+        function displayTransactionHistory() {
+    firebase.auth().onAuthStateChanged(function(user) {
+        if (user) {
+            db.collection("transactions").where("userId", "==", user.uid).get().then((querySnapshot) => {
+                const transactionHistoryList = document.getElementById("transactionHistory");
+                transactionHistoryList.innerHTML = ''; // Clear previous items
+                
+                querySnapshot.forEach((doc) => {
+                    const transaction = doc.data();
+                    const listItem = document.createElement("li");
+                    listItem.classList.add("transaction-item");
+                    
+                    // Determine the status class based on transaction status
+                    let statusClass = "";
+                    if (transaction.status === "Approved") {
+                        statusClass = "transaction-approved";
+                    } else if (transaction.status === "Declined") {
+                        statusClass = "transaction-declined";
+                    }
+                    
+                    listItem.innerHTML = `<span class="transaction-type">${transaction.type}</span> - 
+                                         <span class="transaction-amount">${transaction.amount}</span> - 
+                                         <span class="transaction-status ${statusClass}">${transaction.status}</span>`;
+                    transactionHistoryList.appendChild(listItem);
+                });
+            }).catch((error) => {
+                console.log("Error getting documents: ", error);
+            });
+        } else {
+            // Redirect to login page if no user is signed in
+            window.location.href = "boon-signin.html";
+        }
+    });
+}
+        // Call displayBalance() and displayTransactionHistory() when the page loads
+        window.onload = function () {
+            displayBalance();
+            displayTransactionHistory();
+        };
+   </script>
+    
+
+
+  
+
+</body>
+</html>
